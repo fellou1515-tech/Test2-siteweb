@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Looupsie.com - objets choisis pour embellir le quotidien." />
+	<title>Looupsie.com | Des objets qui racontent votre histoire</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=DM+Mono:wght@400;500&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<style>
+		:root {
+			--ink: #242b29;
+			--muted: #6f6a5b;
+			--paper: #eee8d8;
+			--cream: #fbf4e4;
+			--sage: #aab49a;
+			--sage-dark: #31584d;
+			--coral: #8b4547;
+			--peacock: #1d5960;
+			--gold: #b39452;
+			--line: #cdbf9f;
+			--shadow: 0 16px 40px rgba(38, 51, 43, .09);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Josefin Sans", sans-serif; background-image: radial-gradient(rgba(49, 88, 77, .07) .6px, transparent .6px); background-size: 5px 5px; }
+		button, input { font: inherit; }
+		button { cursor: pointer; }
+		a { color: inherit; text-decoration: none; }
+		.container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+
+		.announcement { background: var(--peacock); color: #f7efd8; text-align: center; padding: 10px 20px; font: 11px "DM Mono", monospace; letter-spacing: .05em; text-transform: uppercase; border-bottom: 2px solid var(--gold); }
+		header { background: var(--cream); border-bottom: 1px solid var(--gold); }
+		.nav { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+		.brand { font-family: "Bodoni Moda", serif; font-size: 38px; font-weight: 700; letter-spacing: -.03em; }
+		.brand span { color: var(--gold); }
+		.links { display: flex; gap: 32px; color: var(--sage-dark); font: 12px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .04em; }
+		.links a:hover { color: var(--coral); }
+		.nav-actions { display: flex; align-items: center; gap: 16px; }
+		.icon-button { border: 0; background: transparent; color: var(--ink); padding: 8px; display: grid; place-items: center; }
+		.icon-button svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+		.cart-button { position: relative; }
+		.cart-count { position: absolute; right: 1px; top: 0; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 20px; display: grid; place-items: center; color: white; background: var(--coral); font-size: 10px; }
+
+		.hero { min-height: 620px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; padding: 74px 0 88px; }
+		.eyebrow { color: var(--coral); text-transform: uppercase; font: 11px "DM Mono", monospace; letter-spacing: .12em; }
+		h1, h2 { font-family: "Bodoni Moda", serif; font-weight: 700; line-height: .98; letter-spacing: -.02em; }
+		h1 { font-size: clamp(44px, 5.7vw, 74px); max-width: 580px; margin: 18px 0 23px; }
+		h1 em { color: var(--peacock); font-style: normal; }
+		.hero-copy { max-width: 460px; color: var(--muted); line-height: 1.9; font-size: 15px; }
+		.button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--ink); padding: 14px 23px; margin-top: 26px; background: var(--ink); color: white; font: 12px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .03em; transition: transform .2s, background .2s; }
+		.button:hover { background: var(--coral); transform: translateY(-2px); }
+		.button.light { background: var(--cream); color: var(--ink); }
+		.hero-image { position: relative; height: 475px; }
+		.hero-image::before { content: ""; position: absolute; inset: 30px -18px 0 35px; background: var(--sage); transform: rotate(3deg); border: 1px solid var(--gold); background-image: linear-gradient(45deg, transparent 46%, rgba(49, 88, 77, .22) 47%, rgba(49, 88, 77, .22) 53%, transparent 54%), linear-gradient(-45deg, transparent 46%, rgba(49, 88, 77, .22) 47%, rgba(49, 88, 77, .22) 53%, transparent 54%); background-size: 22px 22px; }
+		.hero-emblem { position: absolute; z-index: 1; right: 7%; top: 11%; width: 74%; height: 73%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--cream); background: var(--peacock); border: 5px solid var(--cream); outline: 1px solid var(--gold); border-radius: 48% 48% 8px 8px; text-align: center; }
+		.hero-emblem::before, .hero-emblem::after { content: ""; position: absolute; border: 1px solid var(--gold); }
+		.hero-emblem::before { inset: 20px; border-radius: 50%; }
+		.hero-emblem::after { width: 70px; height: 70px; transform: rotate(45deg); }
+		.hero-emblem span, .hero-emblem strong, .hero-emblem small { position: relative; z-index: 1; }
+		.hero-emblem span { color: var(--gold); font-size: 30px; }
+		.hero-emblem strong { margin-top: 5px; font: 42px "Bodoni Moda", serif; }
+		.hero-emblem small { margin-top: 7px; font: 9px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+		.hero-sticker { position: absolute; z-index: 2; left: -10px; bottom: 30px; width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center; padding: 22px; color: var(--cream); background: var(--coral); text-align: center; font-family: "Bodoni Moda", serif; font-size: 19px; line-height: 1.1; transform: rotate(-12deg); border: 2px solid var(--gold); box-shadow: 0 0 0 5px var(--cream), 0 0 0 6px var(--gold); }
+
+		.trust-bar { border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); padding: 20px 0; color: var(--muted); font-size: 11px; background: rgba(251, 244, 228, .65); }
+		.trust-items { display: flex; justify-content: space-between; gap: 20px; }
+		.trust-item { display: flex; align-items: center; gap: 10px; }
+		.trust-item strong { color: var(--ink); font-size: 12px; }
+		.trust-icon { color: var(--gold); font-size: 18px; }
+		.art-note { position: relative; padding: 82px 0 95px; background: var(--peacock); color: var(--cream); overflow: hidden; }
+		.art-note::before, .art-note::after { content: ""; position: absolute; border: 1px solid rgba(196, 164, 87, .65); border-radius: 50%; pointer-events: none; }
+		.art-note::before { width: 370px; height: 190px; left: -110px; top: -80px; transform: rotate(35deg); }
+		.art-note::after { width: 330px; height: 160px; right: -100px; bottom: -70px; transform: rotate(-35deg); }
+		.art-note-inner { max-width: 720px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+		.art-note .eyebrow { color: var(--gold); }
+		.art-note h2 { font-size: clamp(42px, 5vw, 68px); margin: 16px 0 22px; }
+		.art-note p { max-width: 590px; margin: 0 auto; color: #e3dcca; line-height: 2; font-size: 15px; }
+		.art-note-signature { display: block; margin-top: 25px; color: var(--gold); font: 27px "Bodoni Moda", serif; }
+		.gallery-section { padding-bottom: 105px; }
+		.gallery-section::before { content: ""; position: absolute; right: 0; top: 93px; color: var(--muted); font: 10px "DM Mono", monospace; letter-spacing: .12em; transform: rotate(90deg); transform-origin: right top; }
+		.gallery-intro { max-width: 560px; color: var(--muted); line-height: 1.9; }
+		.art-gallery { display: grid; grid-template-columns: 1.08fr .78fr .92fr; grid-template-rows: 225px 225px; gap: 18px; margin-top: 42px; }
+		.art-piece {
+			position: relative; overflow: hidden; min-height: 0; border: 1px solid var(--gold); background: #c9bca0;
+		}
+		.art-piece::after { content: ""; position: absolute; inset: 11px; border: 1px solid rgba(251, 244, 228, .78); pointer-events: none; }
+		.art-piece:nth-child(1) { background: #a77a61; grid-row: 1 / 3; border-radius: 45% 8px 8px 45%; }
+		.art-piece:nth-child(2) { background: #7a8d82; border-radius: 52% 52% 8px 8px; }
+		.art-piece:nth-child(3) { background: #9b7a5c; border-radius: 8px 8px 45% 45%; }
+		.art-piece:nth-child(4) { background: #a8b39c; grid-column: 2 / 4; border-radius: 8px 45% 8px 8px; }
+		.art-symbol { position: absolute; z-index: 1; top: 50%; left: 50%; color: var(--cream); font: 105px "Bodoni Moda", serif; transform: translate(-50%, -50%); text-shadow: 0 0 0 var(--gold); }
+		.art-piece figcaption { position: absolute; z-index: 1; bottom: 22px; left: 25px; color: white; font: 12px "DM Mono", monospace; letter-spacing: .04em; text-transform: uppercase; text-shadow: 0 1px 9px rgba(0, 0, 0, .4); }
+
+		section { padding: 100px 0; }
+		.hero, .gallery-section, .products-section, .story { position: relative; isolation: isolate; }
+		.hero::before { content: none; }
+		.hero::after { content: ""; position: absolute; width: 120px; height: 120px; right: -34px; top: 65px; border: 1px solid var(--gold); border-radius: 50%; background: repeating-conic-gradient(from 8deg, transparent 0 13deg, rgba(179, 148, 82, .14) 13deg 15deg); z-index: -1; }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 36px; }
+		h2 { font-size: clamp(34px, 4vw, 50px); margin: 12px 0 0; }
+		h2::after { content: ""; display: block; width: 62px; height: 7px; margin-top: 15px; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); }
+		.text-link { color: var(--peacock); font: 12px "DM Mono", monospace; border-bottom: 1px solid var(--gold); padding-bottom: 5px; }
+		.categories { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+		.category {
+			position: relative;
+			height: 255px;
+			overflow: hidden;
+			display: flex;
+			align-items: end;
+			padding: 22px;
+			color: white;
+			border: 1px solid var(--gold);
+			border-radius: 45% 45% 8px 8px;
+			background: #b3a98d;
+		}
+		.category:nth-child(1) { border-radius: 45% 8px 8px 45%; background: #6e7f72; }
+		.category:nth-child(2) { border-radius: 52% 52% 8px 8px; background: #7a5e63; }
+		.category:nth-child(3) { border-radius: 8px 8px 45% 45%; background: #9a7f58; }
+		.category:nth-child(4) { border-radius: 8px 45% 8px 8px; background: #4f6d67; }
+		.category::after { content: ""; position: absolute; inset: 0; background: rgba(17, 28, 21, .14); }
+		.category-symbol { position: absolute; z-index: 1; top: 34px; left: 50%; color: rgba(251, 244, 228, .84); font: 74px "Bodoni Moda", serif; transform: translateX(-50%); }
+		.category div {
+			position: absolute; z-index: 2; left: 50%; bottom: 18px; transform: translateX(-50%);
+			width: calc(100% - 42px); padding: 0; background: transparent; border-left: 0; text-align: center;
+		}
+		.category h3 { margin: 0 0 5px; font-family: "Bodoni Moda", serif; font-size: 29px; line-height: 1; }
+		.category small { display: block; opacity: .92; font-size: 11px; line-height: 1.45; white-space: normal; }
+
+		.products-section { background: var(--cream); border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); overflow: hidden; }
+		.products-section::before { content: "✦"; position: absolute; right: 8%; top: 72px; color: var(--gold); font-size: 46px; line-height: 1; opacity: .6; }
+		.products-section::after { content: "COLLECTION PARTICULIERE"; position: absolute; left: -38px; bottom: 170px; color: var(--gold); font: 10px "DM Mono", monospace; letter-spacing: .16em; writing-mode: vertical-rl; transform: rotate(180deg); }
+		.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+		.filter { border: 1px solid var(--line); color: var(--muted); background: transparent; padding: 10px 16px; font: 11px "DM Mono", monospace; text-transform: uppercase; }
+		.filter.active, .filter:hover { background: var(--peacock); border-color: var(--peacock); color: white; }
+		.products { display: grid; grid-template-columns: 1.08fr .92fr 1.08fr .92fr; gap: 22px; align-items: start; }
+		.product { min-width: 0; }
+		.product:nth-child(4n + 1) { margin-top: 26px; }
+		.product:nth-child(4n + 3) { margin-top: 44px; }
+		.product:nth-child(4n) { margin-top: 12px; }
+		.product-photo { position: relative; aspect-ratio: 1 / 1.1; overflow: hidden; display: grid; place-items: center; background: var(--product-paper, #d2c5af); border: 1px solid var(--gold); border-radius: 48% 8px 8px 48%; }
+		.product:nth-child(2) .product-photo { border-radius: 48% 48% 8px 8px; }
+		.product:nth-child(3) .product-photo { border-radius: 48% 48% 8px 8px; }
+		.product:nth-child(4) .product-photo { border-radius: 8px 48% 8px 8px; }
+		.product:nth-child(6) .product-photo,
+		.product:nth-child(7) .product-photo { border-radius: 8px 8px 48% 48%; }
+		.product:nth-child(8) .product-photo { border-radius: 8px 48% 8px 8px; }
+		.product-photo::before { content: ""; position: absolute; inset: 13px; border: 1px solid rgba(36, 43, 41, .55); border-radius: 46% 54% 50% 50%; }
+		.product-photo::after { content: "Looupsie"; position: absolute; bottom: 22px; color: rgba(51, 43, 37, .65); font: 10px "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+		.product-mark { position: relative; z-index: 1; display: grid; place-items: center; width: 78px; height: 78px; border: 2px solid var(--gold); border-radius: 50%; color: var(--peacock); font: 27px "Bodoni Moda", serif; box-shadow: inset 0 0 0 5px var(--product-paper, #d2c5af), inset 0 0 0 6px var(--gold); }
+		.quick-add { position: absolute; z-index: 2; left: 50%; bottom: 18px; width: 40px; height: 40px; display: grid; place-items: center; padding: 0; border: 1px solid var(--ink); border-radius: 50%; background: var(--cream); color: var(--ink); font-size: 22px; line-height: 1; opacity: 0; transform: translate(-50%, 6px); transition: .25s; }
+		.product:hover .quick-add { opacity: 1; transform: translate(-50%, 0); }
+		.product-info { padding-top: 14px; }
+		.product-info h3 { margin: 0 0 6px; font-family: "Bodoni Moda", serif; font-size: 22px; font-weight: 700; }
+		.product-meta { display: flex; justify-content: space-between; color: var(--muted); font: 11px "DM Mono", monospace; }
+		.price { color: var(--ink); font-weight: 700; }
+
+		.story { display: grid; grid-template-columns: .9fr 1.1fr; gap: 85px; align-items: center; }
+		.story::before { content: "✧"; position: absolute; left: 46%; top: 75px; color: var(--gold); font-size: 72px; line-height: 1; z-index: -1; }
+		.story-image { position: relative; height: 490px; display: grid; place-items: center; background: radial-gradient(ellipse at center, #b39452 0 2%, transparent 2.5%), repeating-conic-gradient(from 15deg, #31584d 0 12deg, #aab49a 12deg 24deg, #1d5960 24deg 36deg); border: 1px solid var(--gold); border-radius: 50% 50% 8px 8px; }
+		.story-orbit { width: 62%; height: 62%; display: grid; place-items: center; border: 1px solid var(--cream); border-radius: 50%; color: var(--cream); font: 45px "Bodoni Moda", serif; transform: rotate(-12deg); }
+		.story-flower { position: absolute; right: 20%; bottom: 22%; color: var(--gold); font: 78px "Bodoni Moda", serif; transform: rotate(18deg); }
+		.story-image::after { content: ""; position: absolute; left: -18px; bottom: -18px; width: 70%; height: 75%; border: 1px solid var(--coral); z-index: -1; }
+		.story p { color: var(--muted); line-height: 1.9; max-width: 470px; }
+		.signature { color: var(--coral); font-family: "Bodoni Moda", serif; font-size: 29px; margin-top: 28px; }
+
+		.newsletter { position: relative; background: var(--sage); padding: 62px 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); overflow: hidden; }
+		.newsletter::before { content: ""; position: absolute; width: 170px; height: 170px; right: 7%; top: -95px; border: 1px solid var(--gold); border-radius: 50%; box-shadow: 0 0 0 15px rgba(179, 148, 82, .7), 0 0 0 30px rgba(179, 148, 82, .45); }
+		.newsletter-inner { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+		.newsletter h2 { font-size: 36px; margin-bottom: 8px; }
+		.newsletter p { margin: 0; color: #4d6255; }
+		.subscribe { display: flex; max-width: 420px; width: 100%; border-bottom: 1px solid var(--ink); }
+		.subscribe input { min-width: 0; flex: 1; border: 0; background: transparent; outline: 0; padding: 15px 0; color: var(--ink); }
+		.subscribe input::placeholder { color: var(--cream); opacity: 1; }
+		.subscribe button { border: 0; background: transparent; font-weight: 700; color: var(--ink); }
+		footer { background: var(--peacock); color: #e6dac8; padding: 58px 0 24px; border-top: 4px solid var(--gold); }
+		.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 55px; }
+		footer .brand { color: white; margin-bottom: 16px; display: block; }
+		footer p, footer a { color: #9ba9a0; font-size: 13px; line-height: 1.8; }
+		footer h4 { color: white; margin: 7px 0 18px; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; }
+		.footer-links { display: flex; flex-direction: column; gap: 8px; }
+		.footer-links a:hover { color: white; }
+		.copyright { padding-top: 22px; border-top: 1px solid #35433a; color: #849188; font-size: 11px; }
+
+		.overlay { position: fixed; inset: 0; background: rgba(24, 35, 31, .35); opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 5; }
+		.overlay.open { opacity: 1; pointer-events: auto; }
+		.cart-drawer { position: fixed; z-index: 6; top: 0; right: 0; height: 100%; width: min(420px, 100%); padding: 28px; background: var(--cream); transform: translateX(100%); transition: transform .35s ease; display: flex; flex-direction: column; }
+		.cart-drawer.open { transform: translateX(0); }
+		.cart-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+		.cart-header h3 { font-family: "Bodoni Moda", serif; font-size: 30px; margin: 0; }
+		.cart-items { flex: 1; overflow: auto; padding: 20px 0; }
+		.empty-cart { color: var(--muted); text-align: center; padding: 60px 20px; font-size: 14px; }
+		.cart-row { display: flex; align-items: center; gap: 13px; padding: 12px 0; }
+		.cart-thumb { width: 58px; height: 68px; display: grid; place-items: center; color: var(--ink); background: var(--product-paper, #d2c5af); border: 1px solid var(--ink); font: 22px "Bodoni Moda", serif; }
+		.cart-row p { margin: 0 0 5px; font-size: 13px; }
+		.cart-row small { color: var(--muted); }
+		.cart-row .remove { margin-left: auto; border: 0; color: var(--muted); background: transparent; font-size: 18px; }
+		.cart-total { border-top: 1px solid var(--line); padding-top: 20px; display: flex; justify-content: space-between; font-weight: 700; }
+		.checkout { width: 100%; margin-top: 18px; }
+
+		@media (max-width: 800px) {
+			.container { width: min(100% - 32px, 600px); }
+			.links { display: none; }
+			.hero { grid-template-columns: 1fr; gap: 35px; padding: 55px 0 65px; }
+			.hero-image { height: 360px; }
+			.hero-sticker { left: 0; bottom: 12px; width: 96px; height: 96px; font-size: 13px; }
+			.trust-items { display: grid; grid-template-columns: repeat(2, 1fr); }
+			section { padding: 70px 0; }
+			.categories, .products { grid-template-columns: repeat(2, 1fr); }
+			.category { height: 210px; }
+			.story { grid-template-columns: 1fr; gap: 50px; }
+			.story-image { height: 360px; width: 90%; }
+			.art-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 180px 220px; }
+			.art-piece:nth-child(1) { grid-row: 1 / 3; }
+			.art-piece:nth-child(4) { grid-column: 1 / 3; }
+			.newsletter-inner { display: block; }
+			.subscribe { margin-top: 28px; }
+			.footer-top { grid-template-columns: repeat(2, 1fr); }
+			.footer-top > :first-child { grid-column: 1 / -1; }
+		}
+		@media (max-width: 480px) {
+			h1 { font-size: 47px; }
+			.section-heading { display: block; }
+			.section-heading .text-link { display: inline-block; margin-top: 16px; }
+			.gallery-intro { margin-top: 24px; }
+			.art-gallery { display: block; }
+			.art-piece { height: 230px; margin-bottom: 12px; }
+			.categories, .products { gap: 12px; }
+			.category { height: 170px; padding: 14px; }
+			.category div { left: 14px; right: 14px; bottom: 14px; padding: 7px 9px 8px; }
+			.category h3 { font-size: 19px; }
+			.category small { font-size: 10px; }
+			.product-info h3 { font-size: 13px; }
+			.quick-add { opacity: 1; transform: translate(-50%, 0); width: 35px; height: 35px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="announcement">Livraison offerte en France des 60 euros &nbsp; / &nbsp; Retours sous 30 jours</div>
+	<header>
+		<nav class="nav container">
+			<a class="brand" href="#top">Looupsie<span>.</span></a>
+			<div class="links"><a href="#galerie">La galerie</a><a href="#boutique">La boutique</a><a href="#histoire">Notre histoire</a></div>
+			<div class="nav-actions">
+				<button class="icon-button" aria-label="Rechercher" title="Rechercher"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 5 5"></path></svg></button>
+				<button class="icon-button cart-button" id="open-cart" aria-label="Ouvrir le panier" title="Panier"><svg viewBox="0 0 24 24"><path d="M4 5h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 9H7"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg><span class="cart-count" id="cart-count">0</span></button>
+			</div>
+		</nav>
+	</header>
+
+	<main id="top">
+		<section class="hero container">
+			<div><div class="eyebrow">un art intemporel</div><h1>Des illustrations qui revivent <em>pour vos yeux.</em></h1><p class="hero-copy">Bienvenue chez Looupsie, une collection de petites merveilles choisies avec soin pour accompagner vos rituels du quotidien.</p><a class="button" href="#boutique">Explorer la boutique <span>-></span></a></div>
+			<div class="hero-image"><div class="hero-emblem"><span>✦</span><strong>Looupsie</strong><small>Maison d'objets sensibles</small></div><div class="hero-sticker">Choisi avec<br />le coeur</div></div>
+		</section>
+
+		<div class="trust-bar"><div class="trust-items container"><div class="trust-item"><span class="trust-icon">✦</span><span><strong>Selection pointue</strong><br />Des pieces qui ont une histoire</span></div><div class="trust-item"><span class="trust-icon">♡</span><span><strong>Emballage soigne</strong><br />Chaque commande est unique</span></div><div class="trust-item"><span class="trust-icon">↝</span><span><strong>Livraison rapide</strong><br />Expediee sous 48h</span></div></div></div>
+
+		<section class="art-note"><div class="art-note-inner"><div class="eyebrow">Un cabinet de curiosites</div><h2>Des formes, des couleurs, des histoires.</h2><p>Looupsie est un espace sensible ou les objets dialoguent avec les images, les souvenirs et les gestes du quotidien. Chaque collection commence par une atmosphere : une lumiere sur un mur, une fleur sechee entre deux pages, le dessin d'une tasse oubliee sur une table.</p><span class="art-note-signature">L'art de vivre doucement</span></div></section>
+
+		<section class="gallery-section container" id="galerie"><div class="section-heading"><div><div class="eyebrow">Fragments choisis</div><h2>La galerie Looupsie</h2></div><p class="gallery-intro">Avant d'etre des objets, nos pieces sont des presences. Une promenade visuelle entre matieres, architectures et couleurs patinees.</p></div><div class="art-gallery"><figure class="art-piece"><span class="art-symbol">◌</span><figcaption>Etude no. 01 / Terre</figcaption></figure><figure class="art-piece"><span class="art-symbol">⌁</span><figcaption>Silence vegetal</figcaption></figure><figure class="art-piece"><span class="art-symbol">⌂</span><figcaption>La ligne courbe</figcaption></figure><figure class="art-piece"><span class="art-symbol">❧</span><figcaption>Herbier vivant</figcaption></figure></div></section>
+
+		<section class="container" id="categories"><div class="section-heading"><div><div class="eyebrow">Pour chaque envie</div><h2>Explorer par univers</h2></div><a href="#boutique" class="text-link">Voir toute la boutique &rarr;</a></div>
+			<div class="categories"><a class="category" href="#boutique" data-filter-link="Maison"><span class="category-symbol">✦</span><div><h3>Maison</h3><small>Objets & decoration</small></div></a><a class="category" href="#boutique" data-filter-link="Bien-etre"><span class="category-symbol">☾</span><div><h3>Bien-etre</h3><small>Rituels & douceur</small></div></a><a class="category" href="#boutique" data-filter-link="Papeterie"><span class="category-symbol">❧</span><div><h3>Papeterie</h3><small>Pour vos idees</small></div></a><a class="category" href="#boutique" data-filter-link="Cadeaux"><span class="category-symbol">◇</span><div><h3>Cadeaux</h3><small>A offrir ou garder</small></div></a></div>
+		</section>
+
+		<section class="products-section" id="boutique"><div class="container"><div class="section-heading"><div><div class="eyebrow">Nos favoris</div><h2>Les pepites Looupsie</h2></div><a href="#newsletter" class="text-link">Besoin d'inspiration ?</a></div><div class="filters"><button class="filter active" data-filter="Tous">Tout voir</button><button class="filter" data-filter="Maison">Maison</button><button class="filter" data-filter="Bien-etre">Bien-etre</button><button class="filter" data-filter="Papeterie">Papeterie</button><button class="filter" data-filter="Cadeaux">Cadeaux</button></div><div class="products" id="product-grid"></div></div></section>
+
+		<section class="container" id="histoire"><div class="story"><div class="story-image"><span class="story-orbit">Looupsie</span><span class="story-flower">❧</span></div><div><div class="eyebrow">Derriere Looupsie</div><h2>Faire de la place pour le beau.</h2><p>Looupsie est nee d'une envie simple : s'entourer d'objets qui ont du sens, qui durent, et qui apportent un petit sourire chaque jour. Nous rencontrons des createurs passionnes et imaginons avec eux une collection vivante, loin du superflu.</p><p>Des formes douces, des matieres choisies, des objets faits pour etre gardes.</p><div class="signature">Avec amour, Louise</div></div></div></section>
+
+		<section class="newsletter" id="newsletter"><div class="newsletter-inner container"><div><div class="eyebrow">Le mot doux du dimanche</div><h2>Une dose de joli dans vos emails.</h2><p>Nouveautes, inspirations et surprises. Pas de bruit, promis.</p></div><form class="subscribe" id="newsletter-form"><input type="email" placeholder="Votre adresse email" aria-label="Votre adresse email" required /><button type="submit">S'inscrire &rarr;</button></form></div></section>
+	</main>
+
+	<footer id="journal"><div class="container"><div class="footer-top"><div><a class="brand" href="#top">Looupsie<span>.</span></a><p>Des objets choisis avec intention<br />pour embellir le quotidien.</p></div><div><h4>Decouvrir</h4><div class="footer-links"><a href="#boutique">La boutique</a><a href="#categories">Les collections</a><a href="#histoire">Notre histoire</a></div></div><div><h4>Aide</h4><div class="footer-links"><a href="#">Livraison & retours</a><a href="#">Questions frequentes</a><a href="#">Nous contacter</a></div></div><div><h4>Suivez-nous</h4><div class="footer-links"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">TikTok</a></div></div></div><div class="copyright">© 2024 Looupsie.com &nbsp; · &nbsp; Fait avec soin en France</div></div></footer>
+
+	<div class="overlay" id="overlay"></div><aside class="cart-drawer" id="cart-drawer" aria-label="Votre panier"><div class="cart-header"><h3>Votre panier</h3><button class="icon-button" id="close-cart" aria-label="Fermer le panier">✕</button></div><div class="cart-items" id="cart-items"><div class="empty-cart">Votre panier est encore vide.<br />Quelques jolies trouvailles vous attendent.</div></div><div class="cart-total"><span>Total</span><span id="cart-total">0,00 €</span></div><button class="button checkout">Passer la commande &rarr;</button></aside>
+
+	<script>
+		const products = [
+			{ id: 1, name: "Vase Alba", category: "Maison", price: 32, initials: "VA", paper: "#c8b89d" },
+			{ id: 2, name: "Bougie Santal", category: "Bien-etre", price: 24, initials: "BS", paper: "#c5bfa8" },
+			{ id: 3, name: "Carnet Lignes", category: "Papeterie", price: 18, initials: "CL", paper: "#d2b9a6" },
+			{ id: 4, name: "Tasse Onda", category: "Maison", price: 21, initials: "TO", paper: "#b9c2af" },
+			{ id: 5, name: "Huile Calme", category: "Bien-etre", price: 29, initials: "HC", paper: "#d1c3a9" },
+			{ id: 6, name: "Pochette Soleil", category: "Cadeaux", price: 26, initials: "PS", paper: "#d0a983" },
+			{ id: 7, name: "Plateau Terra", category: "Maison", price: 38, initials: "PT", paper: "#b8a78f" },
+			{ id: 8, name: "Coffret Pause", category: "Cadeaux", price: 45, initials: "CP", paper: "#c0b5a4" }
+		];
+		const ui = {
+			grid: document.getElementById("product-grid"),
+			count: document.getElementById("cart-count"),
+			items: document.getElementById("cart-items"),
+			total: document.getElementById("cart-total"),
+			drawer: document.getElementById("cart-drawer"),
+			overlay: document.getElementById("overlay"),
+			form: document.getElementById("newsletter-form")
+		};
+		let cart = [];
+		const formatPrice = value => `${value.toFixed(2).replace(".", ",")} €`;
+
+		function renderProducts(filter = "Tous") {
+			const visible = products.filter(product => filter === "Tous" || product.category === filter);
+			ui.grid.innerHTML = visible.map(product => `
+				<article class="product">
+					<div class="product-photo" style="--product-paper: ${product.paper}">
+						<span class="product-mark">${product.initials}</span>
+						<button class="quick-add" data-id="${product.id}" aria-label="Ajouter ${product.name} au panier">+</button>
+					</div>
+					<div class="product-info">
+						<h3>${product.name}</h3>
+						<div class="product-meta"><span>${product.category}</span><span class="price">${formatPrice(product.price)}</span></div>
+					</div>
+				</article>
+			`).join("");
+			ui.grid.querySelectorAll(".quick-add").forEach(button => button.addEventListener("click", () => addToCart(Number(button.dataset.id))));
+		}
+
+		function addToCart(id) {
+			const product = products.find(item => item.id === id);
+			cart.push(product);
+			updateCart();
+			ui.drawer.classList.add("open");
+			ui.overlay.classList.add("open");
+		}
+
+		function updateCart() {
+			ui.count.textContent = cart.length;
+			ui.items.innerHTML = cart.length
+				? cart.map((item, index) => `
+					<div class="cart-row">
+						<div class="cart-thumb" style="--product-paper: ${item.paper}">${item.initials}</div>
+						<div><p>${item.name}</p><small>${formatPrice(item.price)}</small></div>
+						<button class="remove" data-index="${index}" aria-label="Retirer ${item.name}">×</button>
+					</div>
+				`).join("")
+				: `<div class="empty-cart">Votre panier est encore vide.<br />Quelques jolies trouvailles vous attendent.</div>`;
+			ui.total.textContent = formatPrice(cart.reduce((total, item) => total + item.price, 0));
+			ui.items.querySelectorAll(".remove").forEach(button => button.addEventListener("click", () => {
+				cart.splice(Number(button.dataset.index), 1);
+				updateCart();
+			}));
+		}
+
+		function closeCart() {
+			ui.drawer.classList.remove("open");
+			ui.overlay.classList.remove("open");
+		}
+
+		document.querySelectorAll(".filter").forEach(button => button.addEventListener("click", () => {
+			document.querySelectorAll(".filter").forEach(item => item.classList.remove("active"));
+			button.classList.add("active");
+			renderProducts(button.dataset.filter);
+		}));
+		document.querySelectorAll("[data-filter-link]").forEach(link => {
+			link.addEventListener("click", () => {
+				const filter = link.dataset.filterLink;
+				document.querySelectorAll(".filter").forEach(item => item.classList.toggle("active", item.dataset.filter === filter));
+				renderProducts(filter);
+			});
+		});
+		document.getElementById("open-cart").addEventListener("click", () => {
+			ui.drawer.classList.add("open");
+			ui.overlay.classList.add("open");
+		});
+		document.getElementById("close-cart").addEventListener("click", closeCart);
+		ui.overlay.addEventListener("click", closeCart);
+		ui.form.addEventListener("submit", event => {
+			event.preventDefault();
+			ui.form.innerHTML = "<strong>Merci, vous etes inscrit(e) !</strong>";
+		});
+		renderProducts();
+		updateCart();
+	</script>
+</body>
+</html>
